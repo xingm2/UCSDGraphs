@@ -10,6 +10,8 @@ import java.util.TreeMap;
 
 import util.GraphLoader;
 
+import java.util.Comparator;
+
 /** An abstract class that implements a directed graph. 
  * The graph may have self-loops, parallel edges. 
  * Vertices are labeled by integers 0 .. n-1
@@ -121,8 +123,18 @@ public abstract class Graph {
 	 * @return The degree sequence of this graph.
 	 */
 	public List<Integer> degreeSequence() {
-		// XXX: Implement in part 1 of week 2
-		return null;
+		// XXXdone: Implement in part 1 of week 2
+		List<Integer> degrees = new ArrayList<Integer>();
+
+ 		int numVertices = getNumVertices();
+
+ 		for (int v = 0; v < numVertices; ++v){
+ 			degrees.add(getInNeighbors(v).size() + getNeighbors(v).size());
+ 		}
+
+ 		Collections.sort(degrees, Comparator.reverseOrder());
+
+		return degrees;
 	}
 	
 	/**
@@ -241,7 +253,7 @@ public abstract class Graph {
 		System.out.println("****");
 		System.out.println("Roads / intersections:");
 		GraphAdjList graphFromFile = new GraphAdjList();
-		GraphLoader.loadRoadMap("data/testdata/simpletest.map", graphFromFile);
+		GraphLoader.loadRoadMap("data/testdata/simpletest.map", graphFromFile);  // load data from simpletest.map into "graphFromFile"
 		System.out.println(graphFromFile);
 		
 		System.out.println("Observe all degrees are <= 12.");
