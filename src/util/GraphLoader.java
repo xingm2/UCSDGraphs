@@ -186,7 +186,7 @@ public class GraphLoader
 		
 		int index = 0;
 		for (GeographicPoint pt : intersections) {
-			theGraph.addVertex();
+			theGraph.addVertex(); // addVertex
 			vertexMap.put(index, pt);
 			reverseMap.put(pt, index);
 			index++;
@@ -204,7 +204,7 @@ public class GraphLoader
 				GeographicPoint end = findEndOfEdge(pointMap, info, theGraph, 
 						reverseMap);
 				Integer endNum = reverseMap.get(end);
-				theGraph.addEdge(nodeNum, endNum);
+				theGraph.addEdge(nodeNum, endNum); // addEdge
 			}
 		}
 	}
