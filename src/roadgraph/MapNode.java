@@ -12,12 +12,22 @@ import java.util.Set;
 
 import geography.GeographicPoint;
 
-class MapNode {
+class MapNode implements Comparable {
 	// The list of edges associated with this node
 	private HashSet<MapEdge> edges;
 
 	// The location of this node
 	private GeographicPoint location;
+
+	// WEEK 4 SOLUTIONS
+	
+	/** the predicted distance of this node (used in Week 3 algorithms) */
+	private double distance;
+	
+	/** the actual distance of this node from start (used in Week 3 algorithms) */
+	private double actualDistance;
+	
+	// END WEEK 4 SOLUTIONS
 
 	/**
 	 * Constructor
@@ -113,5 +123,34 @@ class MapNode {
 		toReturn += ")";
 		return toReturn;
 	} 
+
+    //  WEEK 4 SOLUTIONS 
+	
+	// get node distance (predicted)
+	public double getDistance() {
+		return this.distance;
+	}
+	
+	// set node distance (predicted)
+	public void setDistance(double distance) {
+	    this.distance = distance;
+	}
+ 	// get node distance (actual)
+	public double getActualDistance() {
+		return this.actualDistance;
+	}
+	
+	// set node distance (actual)	
+	public void setActualDistance(double actualDistance) {
+	    this.actualDistance = actualDistance;
+	}
+	
+    // Code to implement Comparable
+	public int compareTo(Object o) {
+		// convert to map node, may throw exception
+		MapNode m = (MapNode)o; 
+		return ((Double)(this.getDistance() + this.getActualDistance())).compareTo((Double) (m.getDistance() + m.getActualDistance()));
+	}
+ 	// END WEEK 4 SOLUTIONS
 
 }
